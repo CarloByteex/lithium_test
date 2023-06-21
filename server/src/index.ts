@@ -15,16 +15,12 @@ const corsOption = {
 app.use(cors(corsOption));
 app.use(express.json());
 
-// REST Api
-// import router from "./routes";
-// app.use('/api', router);
-
 // GraphQL
-// import schema from "./graphql";
-// app.use('/graphql', graphqlHTTP({
-//   schema,
-//   graphiql: true,
-// }));
+import schema from "./graphql";
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true,
+}));
 
 app.listen(port, () => {
   console.log("=========================================================================");
