@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useMemo} from 'react';
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, DefaultOptions } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { Routes, Route } from "react-router-dom";
+
+import useAuthenticate from './hooks/useAuthenticate';
+import Login from './components/auths/Login';
+import Header from './layouts/BaseLayout/Header';
+import Register from './components/auths/Register';
+import "./App.css";
 
 function App() {
+  const { token } = useAuthenticate();
+
+  const httpLink = createHttpLink({
+    uri: process.env.REACT_APP_SERVER_URI ? `${process.env.REACT_APP_SERVER_URI}/graphql` : "http://localhost:8000/graphql"
+  })
+
+  const link = useMemo(() => setContext((_, { headers }) => {
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
+      }
+    }
+  }), [token]);
+
+  const defaultOptions: DefaultOptions = {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  }
+
+  const client = useMemo(() => new ApolloClient({
+    link: link.concat(httpLink),
+    cache: new InMemoryCache(),
+    defaultOptions: defaultOptions,
+  }), [link]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Header />
+      <Routes>
+        {/* <Route path="/" element={ <Home/> } /> */}
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+      </Routes>
+    </ApolloProvider>
   );
 }
-
 export default App;
