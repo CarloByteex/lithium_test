@@ -1,0 +1,9 @@
+{
+  "name": "lithium",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+    "install": "concurrently \"cd server && npm install\" \"cd client && npm install\""
+  }
+}
