@@ -6,6 +6,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import useAuth from '../../hooks/useAuth';
 import useAuthenticate from '../../hooks/useAuthenticate';
 
@@ -21,9 +24,13 @@ const Container = styled(AppBar)(
 );
 
 export default function Header() {
-  const { logout, isAuth } = useAuth();
+  const { logout, isAuth, message} = useAuth();
   const { token } = useAuthenticate();
   const [logged, setLogged] = useState<boolean>(false);
+  
+  useEffect(() => {
+    if(message !== ""){toast(message);}
+  },[message]);
 
   useEffect(() => {
     isAuth().then((res) => {
@@ -34,6 +41,7 @@ export default function Header() {
       }
     });
   }, [token]);
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -46,6 +54,7 @@ export default function Header() {
           {logged && <Button sx={{ fontSize: "20px" }} color="inherit" onClick={() => logout()}>Sign Out</Button>}
         </Toolbar>
       </Container>
+      <ToastContainer />
     </Box>
   );
 }

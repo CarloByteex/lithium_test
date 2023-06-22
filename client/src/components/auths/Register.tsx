@@ -43,10 +43,6 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const handleSubmit = () => {
-    if (password !== confirmPassword) {
-      console.log("Those passwords didn't match. Try again.");
-      return;
-    }
     const data = { name, email, password, confirmPassword };
     register(data);
   }

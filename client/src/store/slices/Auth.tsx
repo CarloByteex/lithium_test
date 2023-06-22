@@ -8,6 +8,7 @@ export interface IAuth {
 
 export interface IAuthSlice {
   auth: IAuth
+  message: string
 }
 
 const initialState: IAuthSlice = {
@@ -16,6 +17,7 @@ const initialState: IAuthSlice = {
     name: "",
     email: "",
   },
+  message : ""
 }
 
 const AuthSlice = createSlice({
@@ -27,9 +29,12 @@ const AuthSlice = createSlice({
     },
     reset(state) {
       state.auth = initialState.auth
+    },
+    setMessage(state, action) {
+      state.message = action.payload;
     }
   }
 });
 
-export const { setAuth, reset } = AuthSlice.actions;
+export const { setAuth, reset, setMessage } = AuthSlice.actions;
 export default AuthSlice.reducer;
