@@ -22,10 +22,22 @@ After you have completed the task, please send us a .zip file of the repo, but f
 
 **Your name**
 
-`________________`
+`John Canlas`
 
 **Why did you choose the tech you did?**
 
-`Don't worry about detailing every single package used, but try and justify some of your choices and your reason for making them. We want people who think in features, and how they impact the wider systems going forward, so we expect you to make reasoned decisions with intent!`
+For this project, I have chosen TypeScript as programming language due to its strong typing and increased type-safety, which allows for easier code maintenance and early detection of errors. For the frontend, I have used React.js, a popular and efficient library that allows for modularized components and reusable code. I opted for MUI as styling framework because it offers a wide range of customizable and pre-made components that speed up development time. To manage the application state, I utilized Redux, which provides a centralized store for managing data and actions in a predictable and scalable way.
 
+Moving on to the backend, we chose Node.js and Express.js for their performance and easy scalability in building APIs. For database management, I turned to Prisma, a modern ORM that simplifies database schema creation and provides a type-safe query builder. To integrate the backend with the frontend, I utilized GraphQL, a powerful and flexible API layer that provides a single endpoint for querying and manipulating data.
 
+To allow users to easily authenticate, I implemented Google Auth Library, providing a seamless sign-in and sign-up experience while maintaining security practices. Finally, I used Axios for third-party integration, allowing us to make HTTP requests to other services. Overall, these technologies were thoughtfully chosen to optimize functionality, scalability, and maintainability of the application.
+
+**Guide to start the App**
+
+1. Development environment: Node v18.16.0.
+2. Create .env files in both the client and server directories based on the .env.example files.
+3. In the root directory, run the command **npm install**.
+4. Start a MySQL server at port 3306 and create a database named "lithium".
+5. In the server directory, run the following commands: **npx prisma generate** and **npx prisma db push**.
+6. After installation, run the command **npm start**.
+7. You can access the app at http://localhost:3000.
