@@ -7,6 +7,8 @@ import useAuthenticate from './hooks/useAuthenticate';
 import Login from './components/auths/Login';
 import Header from './layouts/BaseLayout/Header';
 import Register from './components/auths/Register';
+import Home from './layouts/Home';
+
 import "./App.css";
 
 function App() {
@@ -46,7 +48,7 @@ function App() {
     <ApolloProvider client={client}>
       <Header />
       <Routes>
-        {/* <Route path="/" element={ <Home/> } /> */}
+        <Route path="/" element={ <Home/> } />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Routes>

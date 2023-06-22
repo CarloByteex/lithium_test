@@ -23,13 +23,13 @@ const Container = styled(AppBar)(
 export default function Header() {
   const { logout, isAuth } = useAuth();
   const { token } = useAuthenticate();
-  const [ logged, setLogged ] = useState(false);
+  const [logged, setLogged] = useState<boolean>(false);
 
   useEffect(() => {
     isAuth().then((res) => {
-      if(res){
+      if (res) {
         setLogged(true);
-      }else{
+      } else {
         setLogged(false);
       }
     });
@@ -42,8 +42,8 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <img src={logo} />
           </Typography>
-          {!logged && <Link to="/login"><Button sx={{fontSize: "20px"}} color="inherit">Sign In</Button></Link>}
-          {logged && <Button sx={{fontSize: "20px"}} color="inherit" onClick={()=> logout()}>Sign Out</Button>}
+          {!logged && <Link to="/login"><Button sx={{ fontSize: "20px" }} color="inherit">Sign In</Button></Link>}
+          {logged && <Button sx={{ fontSize: "20px" }} color="inherit" onClick={() => logout()}>Sign Out</Button>}
         </Toolbar>
       </Container>
     </Box>

@@ -37,10 +37,10 @@ function Register() {
     });
   }, [token]);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const handleSubmit = () => {
     if (password !== confirmPassword) {
@@ -77,6 +77,7 @@ function Register() {
               <Button type="submit" variant="outlined" onClick={handleSubmit}>
                 Sign Up
               </Button>
+              <Link to="/"><Button sx={{marginLeft: "50px"}} variant="outlined">Cancel</Button></Link>
               <Divider sx={{ m: 2 }} />
               Already have an account? <Link to="/login">Sign In</Link>
             </Card>

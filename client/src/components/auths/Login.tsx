@@ -37,8 +37,8 @@ function Login() {
     });
   }, [token]);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleSubmit = () => {
     login(email, password);
@@ -72,6 +72,7 @@ function Login() {
                 <Button type="submit" variant="outlined" onClick={handleSubmit}>
                   Sign In
                 </Button>
+                <Link to="/"><Button variant="outlined">Cancel</Button></Link>
               </Box>
               <Divider sx={{ m: 2 }} />
               Don't have an account? <Link to="/register">Sign Up</Link>

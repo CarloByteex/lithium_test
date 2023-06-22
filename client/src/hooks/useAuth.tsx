@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useLazyQuery, useMutation } from "@apollo/client";
@@ -18,8 +18,7 @@ interface IUser {
 
 const useAuth = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
-  const { token, setAuthenticate, setAuthToken } = useAuthenticate();
+  const { setAuthenticate, setAuthToken } = useAuthenticate();
 
   // GraphQL - login & register
 
@@ -41,7 +40,7 @@ const useAuth = () => {
           }
         },
         onError: (err) => {
-          navigate("/status/500");
+          console.log(err);
         }
       })
     })
